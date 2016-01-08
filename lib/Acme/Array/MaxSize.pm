@@ -4,6 +4,73 @@ use 5.006;
 use strict;
 use warnings;
 
+use parent 'Tie::Array';
+use Carp;
+
+my %max_size;
+my $last_index = sub { $max_size{+shift} - 1 };
+
+
+sub TIEARRAY {
+    my ($class, $max_size) = @_;
+    my $self = bless [], $class;
+    $max_size{$self} = $max_size;
+    return $self
+}
+
+sub STORE {
+    my ($self, $index, $value) = @_;
+    if ($index > $self->$last_index) {
+        carp 'Array too long';
+        return
+    }
+    $self->[$index] = $value;
+}
+
+sub FETCH {
+    my ($self, $index) = @_;
+    $self->[$index]
+}
+
+sub FETCHSIZE {
+    my $self = shift;
+    @$self
+}
+
+sub STORESIZE {
+    my ($self, $count) = @_;
+    if ($count > $max_size{$self}) {
+        carp 'Array too long';
+        $count = $max_size{$self};
+    }
+    $#{$self} = $count - 1;
+}
+
+sub SPLICE {
+    my ($self, $offset, $length, @list) = @_;
+    if ($offset > $max_size{$self}) {
+        carp 'Array too long';
+        return;
+    }
+
+    if ($offset + $length > $max_size{$self}) {
+        carp 'Array too long';
+        $length = $max_size{$self} - $offset;
+    }
+
+    my $asked = @$self - $length + @list;
+    if ($asked > $max_size{$self}) {
+        carp 'Array too long';
+        if ($offset == 0) {
+            splice @list, 0, $asked - $max_size{$self};
+        } else {
+            splice @list, $max_size{$self} - $asked;
+        }
+    }
+    $self->SUPER::SPLICE($offset, $length, @list);
+}
+
+
 =head1 NAME
 
 Acme::Array::MaxSize - The great new Acme::Array::MaxSize!
@@ -27,27 +94,6 @@ Perhaps a little code snippet.
 
     my $foo = Acme::Array::MaxSize->new();
     ...
-
-=head1 EXPORT
-
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
-
-=head1 SUBROUTINES/METHODS
-
-=head2 function1
-
-=cut
-
-sub function1 {
-}
-
-=head2 function2
-
-=cut
-
-sub function2 {
-}
 
 =head1 AUTHOR
 
@@ -138,4 +184,4 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =cut
 
-1; # End of Acme::Array::MaxSize
+__PACKAGE__
