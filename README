@@ -1,20 +1,12 @@
 Acme-Array-MaxSize
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
-
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it to get an idea of the module's uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
-
+Use this module if you need an array that can't be larger than a given
+size.
 
 INSTALLATION
 
-To install this module, run the following commands:
+Use your favourite CPAN client to install this module. If it doesn't
+work, run the following commands:
 
 	perl Makefile.PL
 	make
@@ -30,8 +22,8 @@ perldoc command.
 
 You can also look for information at:
 
-    RT, CPAN's request tracker (report bugs here)
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Acme-Array-MaxSize
+    GitHub, the module's repository (report bugs here)
+        https://github.com/choroba/Acme-Array-MaxSize
 
     AnnoCPAN, Annotated CPAN documentation
         http://annocpan.org/dist/Acme-Array-MaxSize
@@ -82,4 +74,3 @@ YOUR LOCAL LAW. UNLESS REQUIRED BY LAW, NO COPYRIGHT HOLDER OR
 CONTRIBUTOR WILL BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, OR
 CONSEQUENTIAL DAMAGES ARISING IN ANY WAY OUT OF THE USE OF THE PACKAGE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
