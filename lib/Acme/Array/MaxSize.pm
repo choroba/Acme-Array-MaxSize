@@ -86,14 +86,31 @@ our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
+Your array will never grow bigger over a given limit.
 
-Perhaps a little code snippet.
+  use Acme::Array::MaxSize;
 
-    use Acme::Array::MaxSize;
+  tie my @short, 'Acme::Array::MaxSize', 3;
+  @short = (1 .. 10);
+  print "@short";  # 1 2 3
 
-    my $foo = Acme::Array::MaxSize->new();
-    ...
+=head1 DETAILS
+
+When adding new elements, if the maximal size is reached, all other
+elements are thrown away.
+
+  tie my @short, 'Acme::Array::MaxSize', 3;
+  @short = ('a');
+  push @short, 'b' .. 'h';
+  print "@short";  # a b c
+
+Inserting elements at the B<very beginning> behaves differently,
+though. Each C<unshift> or C<splice> would insert the maximal possible number of elements B<at the end> of the inserted list:
+
+  tie my @short, 'Acme::Array::MaxSize', 3;
+  @short = ('a');
+  unshift @short, 'b' .. 'h';
+  print "@short";  # g h a
 
 =head1 AUTHOR
 
@@ -101,12 +118,13 @@ E. Choroba, C<< <choroba at cpan.org> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-acme-array-maxsize at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Acme-Array-MaxSize>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-
-
+Please report any bugs or feature requests to the GitHub repository
+L<https://github.com/choroba/Acme-Array-MaxSize/issues>, or
+C<bug-acme-array-maxsize at rt.cpan.org>, or through the web interface
+at
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Acme-Array-MaxSize>.
+I will be notified, and then you'll automatically be notified of
+progress on your bug as I make changes.
 
 =head1 SUPPORT
 
@@ -118,6 +136,14 @@ You can find documentation for this module with the perldoc command.
 You can also look for information at:
 
 =over 4
+
+=item * Meta CPAN
+
+L<https://metacpan.org/pod/Acme::Array::MaxSize>
+
+=item * GitHub Repository
+
+L<https://github.com/choroba/Acme-Array-MaxSize/>
 
 =item * RT: CPAN's request tracker (report bugs here)
 
@@ -140,6 +166,7 @@ L<http://search.cpan.org/dist/Acme-Array-MaxSize/>
 
 =head1 ACKNOWLEDGEMENTS
 
+Dedicated to L<Discipulus|http://www.perlmonks.org/?node=Discipulus>.
 
 =head1 LICENSE AND COPYRIGHT
 
