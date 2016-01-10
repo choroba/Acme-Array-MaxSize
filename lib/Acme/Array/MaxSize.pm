@@ -73,15 +73,15 @@ sub SPLICE {
 
 =head1 NAME
 
-Acme::Array::MaxSize - The great new Acme::Array::MaxSize!
+Acme::Array::MaxSize - Limit the maximal size your arrays can get.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 =head1 SYNOPSIS
