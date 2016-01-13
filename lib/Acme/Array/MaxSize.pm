@@ -77,11 +77,11 @@ Acme::Array::MaxSize - Limit the maximal size your arrays can get.
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 =head1 SYNOPSIS
@@ -105,7 +105,8 @@ elements are thrown away.
   print "@short";  # a b c
 
 Inserting elements at the B<very beginning> behaves differently,
-though. Each C<unshift> or C<splice> would insert the maximal possible number of elements B<at the end> of the inserted list:
+though. Each C<unshift> or C<splice> would insert the maximal possible
+number of elements B<at the end> of the inserted list:
 
   tie my @short, 'Acme::Array::MaxSize', 3;
   @short = ('a');
