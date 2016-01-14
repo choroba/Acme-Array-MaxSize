@@ -10,5 +10,9 @@ perl:
   - "5.22"
 env: RELEASE_TESTING=1
 sudo: false
+matrix:
+  include:
+    - perl: 5.22
+      env: COVERAGE=1
 before_install:
   - eval $(curl https://travis-perl.github.io/init) --auto
