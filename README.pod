@@ -3,6 +3,7 @@
 =for HTML
 <a href="https://travis-ci.org/choroba/Acme-Array-MaxSize"><img src="https://api.travis-ci.org/choroba/Acme-Array-MaxSize.png?branch=master"></a>
 <a href="https://metacpan.org/pod/Acme::Array::MaxSize"><img src="https://badge.fury.io/pl/Acme-Array-MaxSize.svg"></a>
+<a href="https://coveralls.io/github/choroba/Acme-Array-MaxSize?branch=master"><img src="https://coveralls.io/repos/choroba/Acme-Array-MaxSize/badge.svg?branch=master&service=github"></a>
 
 Use this module if you need an array that can't be larger than a given
 size.
