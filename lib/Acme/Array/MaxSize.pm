@@ -150,17 +150,9 @@ L<https://github.com/choroba/Acme-Array-MaxSize/>
 
 L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Acme-Array-MaxSize>
 
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/Acme-Array-MaxSize>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Acme-Array-MaxSize>
-
 =item * Search CPAN
 
-L<http://search.cpan.org/dist/Acme-Array-MaxSize/>
+L<https://metacpan.org/dist/Acme-Array-MaxSize/>
 
 =back
 
